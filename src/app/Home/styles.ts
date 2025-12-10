@@ -17,11 +17,10 @@ export const styles = StyleSheet.create({
 
     form: {
         width: "100%",
-        paddingHorizontal: 16,
         gap: 7,
         marginTop: 42,
     },
-
+    
     content: {
         flex: 1,
         width: "113%",
@@ -30,6 +29,5 @@ export const styles = StyleSheet.create({
         borderTopRightRadius: 24,
         padding: 24,
         marginTop: 24,
-
     },
 })
