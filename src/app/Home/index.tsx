@@ -5,26 +5,34 @@ import { Input } from "../components/Input";
 import { FilterStatus } from "../types/FilterStatus";
 import { Filter } from "../components/Filter";
 
+
+const FILTER_STATUS: FilterStatus[] = [FilterStatus.PENDING,FilterStatus.DONE]
+
 export function Home() {
   return (
     <View style={styles.container}>
       <Image
         source={require("@/assets/logo.png")}
         style={styles.logo}
+
       />
-
       <View style={styles.form}>
-        <Input placeholder="O que você precisa comprar?" 
+        <Input placeholder="O que você precisa comprar?"
         />
-        <Button title="Entrar" 
+        <Button title="Entrar"
         />
-      </View>
 
+      </View>
       <View style={styles.content}>
-        <Filter status={FilterStatus.DONE} isActive 
+        {
+          FILTER_STATUS.map((status) =>(
+           <Filter key={status} status={FilterStatus.DONE} isActive
         />
-        <Filter status={FilterStatus.PENDING} isActive={false}
-        />
+          ))
+        }
+       
+
+       
       </View>
     </View>
   );
