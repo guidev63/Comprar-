@@ -1,4 +1,4 @@
-import { View, Image } from "react-native";
+import { View, Image, TouchableOpacity,Text } from "react-native";
 import { styles } from "./styles";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
@@ -6,7 +6,7 @@ import { FilterStatus } from "../types/FilterStatus";
 import { Filter } from "../components/Filter";
 
 
-const FILTER_STATUS: FilterStatus[] = [FilterStatus.PENDING,FilterStatus.DONE]
+const FILTER_STATUS: FilterStatus[] = [FilterStatus.PENDING, FilterStatus.DONE]
 
 export function Home() {
   return (
@@ -15,24 +15,30 @@ export function Home() {
         source={require("@/assets/logo.png")}
         style={styles.logo}
 
+
       />
       <View style={styles.form}>
         <Input placeholder="O que você precisa comprar?"
+
         />
+
         <Button title="Entrar"
+
         />
 
       </View>
       <View style={styles.content}>
-        {
-          FILTER_STATUS.map((status) =>(
-           <Filter key={status} status={FilterStatus.DONE} isActive
-        />
-          ))
-        }
-       
+        <View style={styles.header}>
+          {
+            FILTER_STATUS.map((status) => (
+              <Filter key={status} status={status} isActive
 
-       
+              />
+            ))}
+            <TouchableOpacity style={styles.clearButton}>
+            <Text style={styles.clearText}>Limpar</Text>
+            </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
