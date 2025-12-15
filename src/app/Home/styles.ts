@@ -20,7 +20,6 @@ export const styles = StyleSheet.create({
         gap: 7,
         marginTop: 42,
     },
-    
     content:{
         flex: 1,
         width: "113%",
@@ -32,7 +31,6 @@ export const styles = StyleSheet.create({
         marginTop: 24,
     },
     header: {
-
         width:"100%",
         flexDirection:"row",
         gap: 12,
