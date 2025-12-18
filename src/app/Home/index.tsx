@@ -27,7 +27,8 @@ export function Home() {
         style={styles.logo}
       />
 
-      <View style={styles.form}>
+      <View style={styles.form}
+      >
         <Input placeholder="O que você precisa Comprar?" />
         <Button title="Entrar" />
       </View>
@@ -56,6 +57,7 @@ export function Home() {
               onRemove={() => console.log("remover")}
             />
           )}
+          showsVerticalScrollIndicator={false}
         />
       </View>
     </View>
