@@ -1,4 +1,4 @@
-import { View, Image, TouchableOpacity, Text, ScrollView } from "react-native";
+import { View, Image, TouchableOpacity, Text, FlatList } from "react-native";
 import { styles } from "./styles";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
@@ -11,7 +11,15 @@ const FILTER_STATUS: FilterStatus[] = [
   FilterStatus.DONE,
 ];
 
+const ITEMS = [
+  { id: "1", status: FilterStatus.DONE, description: "1 Pacote de Café" },
+  { id: "2", status: FilterStatus.PENDING, description: "3 Pacotes de macarrão" },
+  { id: "3", status: FilterStatus.PENDING, description: "3 Cebolas" },
+]
+
 export function Home() {
+  console.log("ITEMS", ITEMS);
+
   return (
     <View style={styles.container}>
       <Image
@@ -20,8 +28,7 @@ export function Home() {
       />
 
       <View style={styles.form}>
-        <Input placeholder="O que você precisa comprar?" />
-
+        <Input placeholder="O que você precisa Comprar?" />
         <Button title="Entrar" />
       </View>
 
@@ -39,17 +46,17 @@ export function Home() {
             <Text style={styles.clearText}>Limpar</Text>
           </TouchableOpacity>
         </View>
-
-         <ScrollView>
-        {Array.from({ length: 100 }).map((_, index) => (
-          <Item
-            key={index}
-            data={{ status: FilterStatus.DONE, description: "Café" }}
-            onStatus={() => console.log("mudar o status")}
-            onRemove={() => console.log("remover")}
-          />
-        ))}
-        </ScrollView>
+        <FlatList
+          data={ITEMS}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <Item
+              data={{ status: item.status, description: item.description }}
+              onStatus={() => console.log("mudar o status")}
+              onRemove={() => console.log("remover")}
+            />
+          )}
+        />
       </View>
     </View>
   );
