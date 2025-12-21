@@ -50,7 +50,8 @@ export function Home() {
         <FlatList
           data={ITEMS}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
+          renderItem={({item}) => 
+            (
             <Item
               data={{ status: item.status, description: item.description }}
               onStatus={() => console.log("mudar o status")}
@@ -58,6 +59,11 @@ export function Home() {
             />
           )}
           showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View  style={styles.separator}/>}
+          contentContainerStyle={styles.listContent}
+          ListEmptyComponent={(
+
+          ) => <Text style={styles.empty}>Nenhum item aqui.</Text>}
         />
       </View>
     </View>
