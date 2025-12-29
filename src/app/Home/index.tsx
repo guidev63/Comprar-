@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { View, Image, TouchableOpacity, Text, FlatList } from "react-native";
 import { styles } from "./styles";
 import { Button } from "../components/Button";
@@ -12,13 +13,16 @@ const FILTER_STATUS: FilterStatus[] = [
 ];
 
 const ITEMS = [
+
   { id: "1", status: FilterStatus.DONE, description: "1 Pacote de Café" },
   { id: "2", status: FilterStatus.PENDING, description: "3 Pacotes de macarrão" },
   { id: "3", status: FilterStatus.PENDING, description: "3 Cebolas" },
 ]
 
 export function Home() {
-  console.log("ITEMS", ITEMS);
+  const [filter, setFilter] = useState(FilterStatus.PENDING)
+
+  let name =  ""
 
   return (
     <View style={styles.container}>
@@ -26,20 +30,25 @@ export function Home() {
         source={require("@/assets/logo.png")}
         style={styles.logo}
       />
-
       <View style={styles.form}
       >
-        <Input placeholder="O que você precisa Comprar?" />
-        <Button title="Entrar" />
+        <Input placeholder="O que você precisa Comprar?"
+         onChangeText={(Value) => console.log(Value)}
+         />
+        <Button title="Entrar"
+        />
       </View>
 
-      <View style={styles.content}>
-        <View style={styles.header}>
+      <View style={styles.content}
+      >
+        <View style={styles.header}
+        >
           {FILTER_STATUS.map((status) => (
             <Filter
               key={status}
               status={status}
-              isActive
+              isActive={status === filter}
+              onPress={() => setFilter(status)}
             />
           ))}
 
@@ -50,8 +59,8 @@ export function Home() {
         <FlatList
           data={ITEMS}
           keyExtractor={(item) => item.id}
-          renderItem={({item}) => 
-            (
+          renderItem={({ item }) =>
+          (
             <Item
               data={{ status: item.status, description: item.description }}
               onStatus={() => console.log("mudar o status")}
@@ -59,7 +68,7 @@ export function Home() {
             />
           )}
           showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View  style={styles.separator}/>}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
           contentContainerStyle={styles.listContent}
           ListEmptyComponent={(
 
