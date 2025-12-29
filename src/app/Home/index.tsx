@@ -21,8 +21,8 @@ const ITEMS = [
 
 export function Home() {
   const [filter, setFilter] = useState(FilterStatus.PENDING)
-
-  let name =  ""
+  
+  const [description, setDescription] = useState("")
 
   return (
     <View style={styles.container}>
@@ -33,8 +33,9 @@ export function Home() {
       <View style={styles.form}
       >
         <Input placeholder="O que você precisa Comprar?"
-         onChangeText={(Value) => console.log(Value)}
+         onChangeText={setDescription}
          />
+       
         <Button title="Entrar"
         />
       </View>
