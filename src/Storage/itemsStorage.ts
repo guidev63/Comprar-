@@ -17,3 +17,8 @@ async function get(): Promise<ItemStorage[]> {
         throw new Error("GET_ITEMS:" + error)
     }
 }
+
+export const ItemStorage = {
+    get,
+}
+
